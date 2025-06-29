@@ -1,3 +1,26 @@
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) != 3) {
+  stop("Usage: Rscript linear_regression_r.R <filename> <x_column> <y_column>")
+}
+
+filename <- args[1]
+x_col <- args[2]
+y_col <- args[3]
+
+data <- read.csv(filename)
+formula <- as.formula(paste(y_col, "~", x_col))
+model <- lm(formula, data = data)
+
+library(ggplot2)
+plot <- ggplot(data, aes_string(x = x_col, y = y_col)) +
+  geom_point(color = "red") +
+  geom_smooth(method = "lm", color = "blue") +
+  ggtitle(paste(y_col, "vs", x_col)) +
+  xlab(x_col) +
+  ylab(y_col)
+
+ggsave("linear_regression_r_output.png", plot)
+print(plot)
 {
  "cells": [
   {
@@ -18,7 +41,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 8,
    "id": "dcf965dc-2b9f-4eba-8893-5659b71987f6",
    "metadata": {},
    "outputs": [],
@@ -36,7 +59,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 9,
    "id": "5a6feaa6-cda4-4951-95c7-875cd3cdd115",
    "metadata": {},
    "outputs": [
@@ -70,7 +93,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": 10,
    "id": "17b13fce-0383-443e-b9ea-99c9af37dc68",
    "metadata": {},
    "outputs": [],
@@ -88,7 +111,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 13,
    "id": "7e5530ba-1cdf-4562-ba6c-430591f803ca",
    "metadata": {},
    "outputs": [
@@ -96,6 +119,8 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
+      "Warning message in install.packages(\"ggplot2\"):\n",
+      "“installation of package ‘ggplot2’ had non-zero exit status”\n",
       "Updating HTML index of packages in '.Library'\n",
       "\n",
       "Making 'packages.html' ...\n",
@@ -118,7 +143,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 14,
    "id": "f99e54d8-fdd3-480f-8413-7809b00bafe4",
    "metadata": {},
    "outputs": [
@@ -174,7 +199,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": 15,
    "id": "1ed11066-3ecc-48fe-9781-d9a4c2a92b37",
    "metadata": {},
    "outputs": [
@@ -208,6 +233,14 @@
    "source": [
     "summary(model)"
    ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "503786b0-6b4c-4b45-b24d-b154c7a88f4c",
+   "metadata": {},
+   "outputs": [],
+   "source": []
   }
  ],
  "metadata": {
