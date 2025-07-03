@@ -7,5 +7,10 @@ Part 2 of the assignment was to convert the notebooks into scripts and run them 
   the scripts were modified using the given code from the assignments for both languages
   juptyerlab terminal was used to exexcuted the code in the scripts using given code in the assignments
   two png images were generated for both the R and python code
+Assignmenet 3 I 
+  Enhance the plots in R and python
+  Added title for plot and axis
+  utilized linear regession to generate equation of the line printed onto the graph 
+  with the addition with mean standard error and r coefficient 
   
   
